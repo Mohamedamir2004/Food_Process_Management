@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Add Food | Food Process{% endblock %}
+{% block content %}
+<div class="form-container">
+  <h2>{% if edit %}Edit{% else %}Add{% endif %} Food Item</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">{% if edit %}Update{% else %}Add{% endif %}</button>
+  </form>
+</div>
+{% endblock %}

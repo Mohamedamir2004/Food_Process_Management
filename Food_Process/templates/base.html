@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Food Process{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <a href="{% url 'home' %}">Food Process</a>
+      </div>
+
+      <!-- Hamburger (Mobile Only) -->
+      <div class="nav-toggle" onclick="toggleMenu()">
+        <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="icon"
+             fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </div>
+
+      <!-- Navbar Links -->
+      <div class="nav-links" id="navMenu">
+        <!-- Close Button (Only Mobile) -->
+        <div class="close-btn" onclick="toggleMenu()">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon"
+               fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </div>
+
+        <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
+        <a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a>
+        <a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a>
+
+        {% if user.is_authenticated %}
+          {% if user.is_staff %}
+            <!-- Dropdown for staff -->
+            <div class="dropdown">
+              <a href="#">👨‍🍳 Staff</a>
+              <div class="dropdown-content">
+                <a href="{% url 'staff_dashboard' %}">Dashboard</a>
+                <a href="{% url 'add_item' %}">Add Food</a>
+                <a href="{% url 'manage_items' %}">Manage Items</a>
+              </div>
+            </div>
+          {% else %}
+            <a href="{% url 'guest_page' %}">Guest Page</a>
+          {% endif %}
+          <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+          <a href="{% url 'login' %}">Login</a>
+          <a href="{% url 'register' %}">Register</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+      {% block content %}{% endblock %}
+  </div> 
+
+  <!-- Toast Notifications -->
+  {% if messages %}
+  <div class="toast-container">
+    {% for message in messages %}
+      <div class="toast {{ message.tags }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <script>
+    // Auto-hide toast
+    setTimeout(() => {
+      document.querySelectorAll('.toast').forEach(el => {
+        el.style.opacity = '0';
+        setTimeout(() => el.remove(), 500);
+      });
+    }, 4000); 
+
+    // Mobile menu toggle
+    function toggleMenu() {
+      const navMenu = document.getElementById("navMenu");
+      navMenu.classList.toggle("active");
+    }
+
+    // Dropdown toggle
+    document.querySelectorAll(".dropdown > a").forEach(item => {
+      item.addEventListener("click", function(e) {
+        e.preventDefault();
+        let menu = this.nextElementSibling;
+        menu.classList.toggle("show");
+      });
+    });
+
+    // Close dropdown if clicked outside
+    document.addEventListener("click", function(e) {
+      document.querySelectorAll(".dropdown-content").forEach(menu => {
+        if (!menu.parentElement.contains(e.target)) {
+          menu.classList.remove("show");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

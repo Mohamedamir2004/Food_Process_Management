@@ -1,0 +1,32 @@
+[
+  {
+    "model": "Food_Process.foodprocess",
+    "pk": 1,
+    "fields": {
+      "name": "Tomato Processing",
+      "description": "Step-by-step process of cleaning and slicing tomatoes.",
+      "image": "images/84bc64ed-51d4-4627-91e6-2bd78ca67aaf.jpg",
+      "video": "videos/357221430.webm"
+    }
+  },
+  {
+    "model": "Food_Process.foodprocess",
+    "pk": 2,
+    "fields": {
+      "name": "Bread Baking",
+      "description": "Mixing, proofing, and baking bread.",
+      "image": "images/8cf8307d-5681-4a51-956d-33c2a4af7e51.jpg",
+      "video": "videos/3119255-uhd_3840_2160_25fps.mp4"
+    }
+  },
+  {
+    "model": "Food_Process.foodprocess",
+    "pk": 3,
+    "fields": {
+      "name": "Fruit Juicing",
+      "description": "Extraction of juice from fresh fruits.",
+      "image": "images/7d6fbb9b-628b-4284-bd9c-fea6b3370fb0.jpg",
+      "video": "videos/855201-hd_1920_1080_25fps.mp4"
+    }
+  }
+]

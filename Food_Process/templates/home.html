@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}Home | Food Process{% endblock %}
+{% block content %}
+
+<h2>Welcome to the Food Process Management System</h2>
+
+<!-- 🔹 Role Section -->
+<div class="role-cards">
+    {% if user.is_authenticated %}
+        {% if user.is_staff %}
+            <div class="role-card staff">
+                <h3>👨‍🍳 Staff</h3>
+                <p>Perform CRUD operations on food items (Add, Update, Delete).</p>
+                <a href="{% url 'staff_dashboard' %}" class="btn">Go to Staff Dashboard</a>
+            </div>
+        {% else %}
+            <div class="role-card guest">
+                <h3>👥 Guest</h3>
+                <p>View available food processes and details provided by staff.</p>
+                <a href="{% url 'guest_page' %}" class="btn">Go to Guest Page</a>
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="role-card login-card">
+            <h3>🔐 Login Required</h3>
+            <p>Please log in or register to continue.</p>
+            <a href="{% url 'login' %}" class="btn">Login</a>
+            <a href="{% url 'register' %}" class="btn">Register</a>
+        </div>
+    {% endif %}
+</div>
+
+<hr>
+
+<!-- 📷 Images Section -->
+<h3>📸 Photos</h3>
+<div class="photo-gallery">
+    {% for item in items %}
+        {% if item.image %}
+        <div class="media-card">
+            <img src="{{ item.image.url }}" alt="{{ item.name }}">
+            <h4>{{ item.name }}</h4>
+            <p>{{ item.description }}</p>
+        </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<!-- 🎥 Videos Section -->
+<h3>🎥 Videos</h3>
+<div class="video-gallery">
+    {% for item in items %}
+        {% if item.video %}
+        <div class="video-card">
+            <video controls>
+                <source src="{{ item.video.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <h4>{{ item.name }}</h4>
+            <p>{{ item.description }}</p>
+        </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock %}

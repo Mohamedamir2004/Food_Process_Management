@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-container">
+    <h2>Contact Us</h2>
+    <p>If you have any questions, suggestions, or need support, feel free to reach out!</p>
+
+    <form class="contact-form" method="POST" action="{% url 'contact' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn-submit">Send Message</button>
+    </form>
+</div>
+{% endblock %}
