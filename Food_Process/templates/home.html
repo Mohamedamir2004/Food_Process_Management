@@ -32,15 +32,27 @@
 
 <hr>
 
-<!-- 📷 Images Section -->
-<h3>📸 Photos</h3>
-<div class="photo-gallery">
-    {% for item in items %}
-        {% if item.image %}
+<!-- 📷 Images Section --> 
+ <h3>Food Items 🛒</h3>
+<div class="food-gallery">
+    {% for item in food_items %}
         <div class="media-card">
             <img src="{{ item.image.url }}" alt="{{ item.name }}">
             <h4>{{ item.name }}</h4>
             <p>{{ item.description }}</p>
+            <p><strong>₹{{ item.price }}</strong></p>
+            <a href="{% url 'add_to_cart' item.id %}" class="btn">🛒 Add to Cart</a>
+        </div>
+    {% endfor %}
+</div>
+<h3>Food Process 📷</h3>
+<div class="photo-gallery">
+    {% for process in processes %}
+        {% if process.image %}
+        <div class="media-card">
+            <img src="{{ process.image.url }}" alt="{{ process.name }}">
+            <h4>{{ process.name }}</h4>
+            <p>{{ process.description }}</p>
         </div>
         {% endif %}
     {% endfor %}
@@ -49,7 +61,7 @@
 <!-- 🎥 Videos Section -->
 <h3>🎥 Videos</h3>
 <div class="video-gallery">
-    {% for item in items %}
+    {% for item in processes %}
         {% if item.video %}
         <div class="video-card">
             <video controls>

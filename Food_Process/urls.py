@@ -21,4 +21,20 @@ urlpatterns = [
     path("manage/", views.manage_items, name="manage_items"),
     path("edit/<int:item_id>/", views.edit_item, name="edit_item"),
     path("delete/<int:item_id>/", views.delete_item, name="delete_item"),
+    
+    # Orders
+    path('order/', views.guest_page, name="order"),
+    # path('cart/add/<int:item_id>/', views.add_to_cart, name="add_to_cart"),
+    path('cart/', views.view_cart, name="view_cart"),
+    path('checkout/', views.checkout, name="checkout"), 
+    path('add-to-cart/<int:item_id>/', views.add_to_cart, name='add_to_cart'), 
+
+    # cart Crud 
+    path("cart/add/<int:item_id>/", views.add_to_cart, name="add_to_cart"),
+    path("cart/remove/<int:item_id>/", views.remove_from_cart, name="remove_from_cart"),
+    path("cart/decrease/<int:item_id>/", views.decrease_quantity, name="decrease_quantity"), 
+
+    # payments
+      path("checkout/", views.checkout, name="checkout"),
+    path("payment/verify/", views.payment_verify, name="payment_verify"),
 ]

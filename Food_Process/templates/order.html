@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Order Food | FoodSys{% endblock %}
+
+{% block content %}
+<h2>Menu</h2>
+<div class="gallery">
+    {% for item in food_items %}
+    <div class="gallery-item">
+        <img src="{{ item.image.url }}" alt="{{ item.name }}">
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+        <p>Price: ₹{{ item.price }}</p>
+        <a href="{% url 'add_to_cart' item.id %}" class="btn">Add to Cart</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Payment | FoodSys{% endblock %}
+
+{% block content %}
+<h2>Payment</h2>
+<p>Order Total: ₹{{ order.total_amount }}</p>
+<form method="POST" action="{% url 'razorpay_payment' order.id %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-login">Pay Now</button>
+</form>
+{% endblock %}

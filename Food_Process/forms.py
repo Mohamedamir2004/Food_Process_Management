@@ -24,7 +24,7 @@ class RegisterForm(UserCreationForm):
 class FoodItemForm(forms.ModelForm):
     class Meta:
         model = FoodItem
-        fields = ['name', 'description', 'image', 'video'] 
+        fields = ['name', 'description','price', 'image', 'video'] 
 
 # for contacts 
 from .models import Contact

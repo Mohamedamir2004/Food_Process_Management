@@ -1,0 +1,28 @@
+{% extends 'base.html' %} 
+{% block title %}Cart | FoodSys{% endblock %}
+
+{% block content %}
+<h2 class="page-title">🛒 Your Cart</h2>
+
+{% if order and order.items.all %}
+    <ul class="cart-list">
+    {% for item in order.items.all %}
+        <li class="cart-item">
+            <span>{{ item.food_item.name }} × {{ item.quantity }}</span>
+            <span>₹{{ item.price }}</span>
+
+            <!-- Buttons -->
+            <div class="cart-buttons">
+                <a href="{% url 'add_to_cart' item.food_item.id %}" class="btn">+</a>
+                <a href="{% url 'decrease_quantity' item.food_item.id %}" class="btn">-</a>
+                <a href="{% url 'remove_from_cart' item.food_item.id %}" class="btn btn-danger">Remove</a>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+    <p class="total"><strong>Total: ₹{{ order.total_amount }}</strong></p>
+    <a href="{% url 'checkout' %}" class="btn btn-primary">Proceed to Checkout</a>
+{% else %}
+    <p class="empty">Your cart is empty.</p>
+{% endif %}
+{% endblock %}

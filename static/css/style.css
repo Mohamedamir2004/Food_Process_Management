@@ -398,7 +398,7 @@ h1, h2 {
 }
 
 /* 📷 Image Section (Grid Style) */
-.photo-gallery {
+.photo-gallery , .food-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
@@ -943,4 +943,76 @@ a {
   text-decoration: none;
   color: #007bff;
   transition: 0.3s;
+}
+
+
+/* checkout and cart html pages  */
+/* General Page Titles */
+.page-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+/* Universal List Styling */
+ul {
+    list-style: none;           /* Remove bullets */
+    padding: 0;
+    margin: 0;
+}
+li {
+    background: #fff;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Cart-specific */
+.cart-buttons a {
+    margin-left: 6px;
+}
+.total {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    color: #111;
+}
+.empty {
+    color: #777;
+    font-style: italic;
+}
+
+/* Checkout Box */
+.checkout-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    max-width: 500px;
+    margin: 1rem auto;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.btn-primary {
+    background: #3399cc;
+    color: white;
+}
+.btn-danger {
+    background: #e74c3c;
+    color: white;
+}
+.btn:hover {
+    opacity: 0.9;
 }
