@@ -34,3 +34,17 @@ class ContactAdmin(admin.ModelAdmin):
     search_fields = ("name", "email", "message")
     list_filter = ("created_at",)
     ordering = ("-created_at",)
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ("id", "user", "status", "total_amount", "payment_completed", "created_at")
+    list_filter = ("status", "payment_completed", "created_at")
+    search_fields = ("user__username", "razorpay_order_id", "razorpay_payment_id")
+    readonly_fields = ("created_at",)
+    ordering = ("-created_at",)
+
+@admin.register(OrderItem)
+class OrderItemAdmin(admin.ModelAdmin):
+    list_display = ("order", "food_item", "quantity", "price")
+    list_filter = ("order__status",)
+    search_fields = ("order__user__username", "food_item__name")
