@@ -33,6 +33,11 @@ class Order(models.Model):
     total_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 
+      # 🔑 Razorpay fields (ADD THESE)
+    razorpay_order_id = models.CharField(max_length=255, blank=True, null=True)
+    payment_completed = models.BooleanField(default=False)
+
+
     def __str__(self):
         return f"Order {self.id} - {self.user.username}"
 
